@@ -21,5 +21,15 @@ class RateDiscountPolicyTest {
         assertThat(discount).isEqualTo(1000);
 
     }
+    @Test
+    @DisplayName("일반고객은 할인이 적용되지 않습니다.")
+    void vip_not(){
+        //given
+        Member member = new Member(2L, "memberBASIC", Grade.BASIC);
+        //when
+        int discount = rateDiscountPolicy.discount(member, 10000);
+        //then
+        assertThat(discount).isEqualTo(0);
+    }
 
 }
